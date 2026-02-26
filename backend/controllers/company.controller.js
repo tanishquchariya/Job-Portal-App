@@ -44,7 +44,7 @@ export const getCompany = async (req, res) => {
         }
         return res.status(200).json({
             companies,
-            success:true
+            success: true
         })
     } catch (error) {
         console.log(error);
@@ -72,14 +72,37 @@ export const getCompanyById = async (req, res) => {
 export const updateCompany = async (req, res) => {
     try {
         const { name, description, website, location } = req.body;
- 
+
+        // const file = req.file;
+        // // idhar cloudinary ayega
+        // const fileUri = getDataUri(file);
+        // const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+        // const logo = cloudResponse.secure_url;
+        // const updateData = { name, description, website, location, logo };
+        // replace above five linecode with below code
+
         const file = req.file;
-        // idhar cloudinary ayega
-        const fileUri = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
-        const logo = cloudResponse.secure_url;
-    
-        const updateData = { name, description, website, location, logo };
+        let logo;
+
+        // ✅ upload only if file exists
+        if (file) {
+            const fileUri = getDataUri(file);
+
+            const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+                folder: "Job Portal by Tanishq Uchariya/companies"
+            });
+
+            logo = cloudResponse.secure_url;
+        }
+
+        // ✅ prepare update data safely
+        const updateData = { name, description, website, location };
+
+        if (logo) {
+            updateData.logo = logo;
+        }
+        // till here we replace code
+
 
         const company = await Company.findByIdAndUpdate(req.params.id, updateData, { new: true });
 
@@ -90,8 +113,8 @@ export const updateCompany = async (req, res) => {
             })
         }
         return res.status(200).json({
-            message:"Company information updated.",
-            success:true
+            message: "Company information updated.",
+            success: true
         })
 
     } catch (error) {

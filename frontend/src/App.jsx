@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
@@ -47,36 +48,63 @@ const appRouter = createBrowserRouter([
   },
   // admin ke liye yha se start hoga
   {
-    path:"/admin/companies",
-    element: <ProtectedRoute><Companies/></ProtectedRoute>
+    path: "/admin/companies",
+    element: <ProtectedRoute><Companies /></ProtectedRoute>
   },
   {
-    path:"/admin/companies/create",
-    element: <ProtectedRoute><CompanyCreate/></ProtectedRoute> 
+    path: "/admin/companies/create",
+    element: <ProtectedRoute><CompanyCreate /></ProtectedRoute>
   },
   {
-    path:"/admin/companies/:id",
-    element:<ProtectedRoute><CompanySetup/></ProtectedRoute> 
+    path: "/admin/companies/:id",
+    element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
   },
   {
-    path:"/admin/jobs",
-    element:<ProtectedRoute><AdminJobs/></ProtectedRoute> 
+    path: "/admin/jobs",
+    element: <ProtectedRoute><AdminJobs /></ProtectedRoute>
   },
   {
-    path:"/admin/jobs/create",
-    element:<ProtectedRoute><PostJob/></ProtectedRoute> 
+    path: "/admin/jobs/create",
+    element: <ProtectedRoute><PostJob /></ProtectedRoute>
   },
   {
-    path:"/admin/jobs/:id/applicants",
-    element:<ProtectedRoute><Applicants/></ProtectedRoute> 
+    path: "/admin/jobs/:id/applicants",
+    element: <ProtectedRoute><Applicants /></ProtectedRoute>
   },
 
 ])
 function App() {
 
+const [darkMode, setDarkMode] = useState(
+  () => localStorage.getItem("theme") === "dark"
+);
+
+  const toggleDarkMode = () => {
+    if (darkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+
+      {/* ⭐ TEMPORARY TEST BUTTON (we will move to navbar later) */}
+      <div className="p-4">
+        <button
+          onClick={toggleDarkMode}
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground"
+        >
+          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+        </button>
+      </div>
+
       <RouterProvider router={appRouter} />
+
     </div>
   )
 }

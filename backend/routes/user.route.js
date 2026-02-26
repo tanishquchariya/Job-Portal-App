@@ -12,3 +12,4 @@ router.route("/profile/update").post(isAuthenticated,singleUpload,updateProfile)
 
 export default router;
 
+

@@ -8,7 +8,12 @@ import store from './redux/store.js'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
+// ⭐⭐⭐ ADD THIS BLOCK HERE ⭐⭐⭐
+if (localStorage.getItem("theme") === "dark") {
+  document.documentElement.classList.add("dark");
+}
 const persistor = persistStore(store);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

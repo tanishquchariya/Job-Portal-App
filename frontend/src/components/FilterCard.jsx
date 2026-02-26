@@ -22,28 +22,55 @@ const fitlerData = [
 const FilterCard = () => {
     const [selectedValue, setSelectedValue] = useState('');
     const dispatch = useDispatch();
+
     const changeHandler = (value) => {
         setSelectedValue(value);
     }
-    useEffect(()=>{
+
+    useEffect(() => {
         dispatch(setSearchedQuery(selectedValue));
-    },[selectedValue]);
+    }, [selectedValue]);
+
     return (
-        <div className='w-full bg-white p-3 rounded-md'>
-            <h1 className='font-bold text-lg'>Filter Jobs</h1>
-            <hr className='mt-3' />
+        // ✅ DARK-MODE SAFE CARD
+        <div className='w-full bg-card text-card-foreground border border-border p-4 rounded-lg shadow-sm transition-colors duration-300'>
+            
+            {/* heading */}
+            <h1 className='font-bold text-lg text-foreground'>
+                Filter Jobs
+            </h1>
+
+            <hr className='mt-3 border-border' />
+
             <RadioGroup value={selectedValue} onValueChange={changeHandler}>
                 {
                     fitlerData.map((data, index) => (
-                        <div>
-                            <h1 className='font-bold text-lg'>{data.fitlerType}</h1>
+                        <div key={index} className="mt-4">
+                            
+                            {/* section title */}
+                            <h2 className='font-semibold text-foreground mb-2'>
+                                {data.fitlerType}
+                            </h2>
+
                             {
                                 data.array.map((item, idx) => {
                                     const itemId = `id${index}-${idx}`
                                     return (
-                                        <div className='flex items-center space-x-2 my-2'>
-                                            <RadioGroupItem value={item} id={itemId} />
-                                            <Label htmlFor={itemId}>{item}</Label>
+                                        <div key={itemId} className='flex items-center space-x-2 my-2'>
+                                            
+                                            {/* ✅ visible in dark */}
+                                            <RadioGroupItem
+                                                value={item}
+                                                id={itemId}
+                                                className="border-border"
+                                            />
+
+                                            <Label
+                                                htmlFor={itemId}
+                                                className="text-muted-foreground cursor-pointer"
+                                            >
+                                                {item}
+                                            </Label>
                                         </div>
                                     )
                                 })

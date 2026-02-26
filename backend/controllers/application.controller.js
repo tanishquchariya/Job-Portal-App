@@ -1,5 +1,7 @@
 import { Application } from "../models/application.model.js";
 import { Job } from "../models/job.model.js";
+import getDataUri from "../utils/datauri.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const applyJob = async (req, res) => {
     try {
@@ -30,88 +32,115 @@ export const applyJob = async (req, res) => {
             })
         }
         // create a new application
+        // const newApplication = await Application.create({
+        //     job:jobId,
+        //     applicant:userId,
+        // });
+        // i replace above four line code with below code
+        // 🔹 get resume file
+        const file = req.file;
+        let resumeUrl = "";
+        let resumeOriginalName = "";
+
+        // ✅ upload resume if provided
+        if (file) {
+            const fileUri = getDataUri(file);
+
+            const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
+                folder: "Job Portal by Tanishq Uchariya/resumes",
+                resource_type: "raw" // important for pdf
+            });
+
+            resumeUrl = cloudResponse.secure_url;
+            resumeOriginalName = file.originalname;
+        }
+
+        // ✅ create new application with resume
         const newApplication = await Application.create({
-            job:jobId,
-            applicant:userId,
+            job: jobId,
+            applicant: userId,
+            resume: resumeUrl,
+            resumeOriginalName: resumeOriginalName
         });
+        // till here we replace code
 
         job.applications.push(newApplication._id);
         await job.save();
         return res.status(201).json({
-            message:"Job applied successfully.",
-            success:true
+            message: "Job applied successfully.",
+            success: true
         })
     } catch (error) {
         console.log(error);
     }
 };
-export const getAppliedJobs = async (req,res) => {
+export const getAppliedJobs = async (req, res) => {
     try {
         const userId = req.id;
-        const application = await Application.find({applicant:userId}).sort({createdAt:-1}).populate({
-            path:'job',
-            options:{sort:{createdAt:-1}},
-            populate:{
-                path:'company',
-                options:{sort:{createdAt:-1}},
+        const application = await Application.find({ applicant: userId }).sort({ createdAt: -1 }).populate({
+            path: 'job',
+            options: { sort: { createdAt: -1 } },
+            populate: {
+                path: 'company',
+                options: { sort: { createdAt: -1 } },
             }
         });
-        if(!application){
+        if (application.length === 0) {
             return res.status(404).json({
-                message:"No Applications",
-                success:false
+                message: "No Applications",
+                success: false
             })
         };
         return res.status(200).json({
             application,
-            success:true
+            success: true
         })
     } catch (error) {
         console.log(error);
     }
 }
 // admin dekhega kitna user ne apply kiya hai
-export const getApplicants = async (req,res) => {
+export const getApplicants = async (req, res) => {
     try {
         const jobId = req.params.id;
         const job = await Job.findById(jobId).populate({
-            path:'applications',
-            options:{sort:{createdAt:-1}},
-            populate:{
-                path:'applicant'
+            path: 'applications',
+            options: { sort: { createdAt: -1 } },
+            populate: {
+                path: 'applicant'
             }
         });
-        if(!job){
+        if (!job) {
             return res.status(404).json({
-                message:'Job not found.',
-                success:false
+                message: 'Job not found.',
+                success: false
             })
         };
         return res.status(200).json({
-            job, 
-            succees:true
+            job,
+            success: true
         });
     } catch (error) {
         console.log(error);
     }
 }
-export const updateStatus = async (req,res) => {
+export const updateStatus = async (req, res) => {
     try {
-        const {status} = req.body;
+        const { status } = req.body;
         const applicationId = req.params.id;
-        if(!status){
+        if (!status) {
             return res.status(400).json({
-                message:'status is required',
-                success:false
+                message: 'status is required',
+                success: false
             })
         };
 
         // find the application by applicantion id
-        const application = await Application.findOne({_id:applicationId});
-        if(!application){
+        const application = await Application.findOne({ _id: applicationId });
+        if (!application) {
             return res.status(404).json({
-                message:"Application not found.",
-                success:false
+                message: "Application not found.",
+                success: false
             })
         };
 
@@ -120,8 +149,8 @@ export const updateStatus = async (req,res) => {
         await application.save();
 
         return res.status(200).json({
-            message:"Status updated successfully.",
-            success:true
+            message: "Status updated successfully.",
+            success: true
         });
 
     } catch (error) {
