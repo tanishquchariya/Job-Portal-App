@@ -9,7 +9,7 @@ const LatestJobCards = ({ job }) => {
     return (
         <div
             onClick={() => navigate(`/description/${job._id}`)}
-            className='p-5 rounded-lg shadow-sm bg-card text-card-foreground border border-border cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-1'
+            className='p-5 rounded-xl shadow-sm bg-card text-card-foreground border border-border cursor-pointer transition duration-300 hover:scale-105 hover:shadow-xl hover:border-purple-400'
         >
             {/* 🔥 COMPANY HEADER WITH LOGO */}
             <div className='flex items-center gap-3 mb-3'>
@@ -26,7 +26,7 @@ const LatestJobCards = ({ job }) => {
             </div>
 
             {/* job title */}
-            <h1 className='font-bold text-lg my-2 text-foreground'>
+            <h1 className='font-bold text-lg my-2 text-foreground hover:text-purple-600 transition'>
                 {job?.title}
             </h1>
 

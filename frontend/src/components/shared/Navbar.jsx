@@ -36,8 +36,11 @@ const Navbar = () => {
                 {/* ✅ TU Brand Logo */}
                 <div className="flex items-center gap-2">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-foreground">
-                            TU <span className="text-[#F83002]">Job Portal</span>
+                        <h1 className="text-xl font-bold">
+                            TU{" "}
+                            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                                Job Portal
+                            </span>
                         </h1>
                     </div>
                 </div>

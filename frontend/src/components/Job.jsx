@@ -16,9 +16,10 @@ const Job = ({ job }) => {
     }
 
     return (
-        // ✅ FIXED: theme-aware card
-        <div className='p-5 rounded-md shadow-sm bg-card text-card-foreground border border-border transition-colors duration-300'>
-            
+        <div
+            className='p-5 rounded-xl shadow-sm bg-card text-card-foreground border border-border cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:border-purple-400 focus:outline-none'
+        >
+
             {/* top row */}
             <div className='flex items-center justify-between'>
                 <p className='text-sm text-muted-foreground'>
@@ -26,18 +27,20 @@ const Job = ({ job }) => {
                         ? "Today"
                         : `${daysAgoFunction(job?.createdAt)} days ago`}
                 </p>
+
                 <Button variant="outline" className="rounded-full" size="icon">
                     <Bookmark />
                 </Button>
             </div>
 
             {/* company info */}
-            <div className='flex items-center gap-2 my-2'>
+            <div className='flex items-center gap-2 my-3'>
                 <Button className="p-6" variant="outline" size="icon">
                     <Avatar>
                         <AvatarImage src={job?.company?.logo} />
                     </Avatar>
                 </Button>
+
                 <div>
                     <h1 className='font-medium text-lg text-foreground'>
                         {job?.company?.name}
@@ -48,10 +51,11 @@ const Job = ({ job }) => {
 
             {/* job title */}
             <div>
-                <h1 className='font-bold text-lg my-2 text-foreground'>
+                <h1 className='font-bold text-lg my-2 text-foreground hover:text-purple-600 transition-colors'>
                     {job?.title}
                 </h1>
-                <p className='text-sm text-muted-foreground'>
+
+                <p className='text-sm text-muted-foreground line-clamp-2'>
                     {job?.description}
                 </p>
             </div>
@@ -71,6 +75,7 @@ const Job = ({ job }) => {
                 >
                     Details
                 </Button>
+
                 <Button className="bg-primary text-primary-foreground hover:opacity-90">
                     Save For Later
                 </Button>
