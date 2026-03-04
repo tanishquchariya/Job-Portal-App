@@ -25,24 +25,25 @@ const Navbar = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response?.data?.message);
+            toast.error(error?.response?.data?.message || "Logout failed");
         }
     }
 
     return (
-        // ✅ FIXED: use theme tokens
         <div className='bg-background border-b border-border transition-colors duration-300'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 px-4'>
-                
-                {/* Logo */}
-                <div>
-                    <h1 className='text-2xl font-bold text-foreground'>
-                        Job<span className='text-[#F83002]'>Portal</span>
-                    </h1>
+
+                {/* ✅ TU Brand Logo */}
+                <div className="flex items-center gap-2">
+                    <div>
+                        <h1 className="text-2xl font-bold tracking-tight text-foreground">
+                            TU <span className="text-[#F83002]">Job Portal</span>
+                        </h1>
+                    </div>
                 </div>
 
                 <div className='flex items-center gap-12'>
-                    
+
                     {/* Nav Links */}
                     <ul className='flex font-medium items-center gap-5 text-muted-foreground'>
                         {
@@ -69,7 +70,6 @@ const Navbar = () => {
                                     <Button variant="outline">Login</Button>
                                 </Link>
                                 <Link to="/signup">
-                                    {/* ✅ theme-based button */}
                                     <Button className="bg-primary text-primary-foreground hover:opacity-90">
                                         Signup
                                     </Button>
@@ -97,7 +97,6 @@ const Navbar = () => {
                                             </div>
                                         </div>
 
-                                        {/* ✅ FIXED text color */}
                                         <div className='flex flex-col my-2 text-muted-foreground'>
                                             {
                                                 user && user.role === 'student' && (
@@ -122,6 +121,7 @@ const Navbar = () => {
                             </Popover>
                         )
                     }
+
                 </div>
             </div>
         </div>

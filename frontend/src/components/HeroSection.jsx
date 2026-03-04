@@ -20,22 +20,23 @@ const HeroSection = () => {
 
                 {/* badge */}
                 <span className='mx-auto px-4 py-2 rounded-full bg-secondary text-secondary-foreground font-medium'>
-                    No. 1 Job Hunt Website
+                    Connecting Talent With Opportunity
                 </span>
 
                 {/* heading */}
                 <h1 className='text-5xl font-bold text-foreground'>
-                    Search, Apply & <br />
+                    Find, Apply & <br />
                     Get Your <span className='text-primary'>Dream Jobs</span>
                 </h1>
 
-                <p className='text-muted-foreground max-w-2xl mx-auto'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid aspernatur temporibus nihil tempora dolor!
+                <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
+                    Discover thousands of job opportunities from top companies and
+                    take the next step in your career journey with TU Job Portal.
                 </p>
 
                 {/* 🔥 PERFECT SEARCH BAR */}
                 <div className='flex w-full max-w-2xl mx-auto rounded-full border border-border bg-background overflow-hidden shadow-sm focus-within:ring-2 focus-within:ring-primary/40 transition-all duration-300'>
-                    
+
                     <input
                         type="text"
                         placeholder='Find your dream jobs'
@@ -47,7 +48,7 @@ const HeroSection = () => {
                     {/* ✅ native button = perfect control */}
                     <button
                         onClick={searchJobHandler}
-                        className="flex items-center justify-center px-6 bg-primary text-primary-foreground hover:opacity-90 transition-all duration-200"
+                        className="flex items-center justify-center px-7 bg-primary text-primary-foreground hover:scale-105 transition-all duration-200"
                     >
                         <Search className="h-5 w-5" />
                     </button>

@@ -47,7 +47,7 @@ export const applyJob = async (req, res) => {
             const fileUri = getDataUri(file);
 
             const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
-                folder: "Job Portal by Tanishq Uchariya/resumes",
+                folder: "job_portal_by_tanishq_uchariya/resumes",
                 resource_type: "raw" // important for pdf
             });
 

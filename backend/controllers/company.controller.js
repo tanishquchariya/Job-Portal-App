@@ -89,7 +89,7 @@ export const updateCompany = async (req, res) => {
             const fileUri = getDataUri(file);
 
             const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
-                folder: "Job Portal by Tanishq Uchariya/companies"
+                folder: "job_portal_by_tanishq_uchariya/companies"
             });
 
             logo = cloudResponse.secure_url;
