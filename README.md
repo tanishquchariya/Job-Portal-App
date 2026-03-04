@@ -12,7 +12,13 @@ Users can explore job opportunities, create professional profiles, upload resume
 ---
 
 ## 📸 Screenshots
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d73c2002-d348-4725-9042-71b50ddc8850" />
+* Home Page
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e9a2e851-1a24-4747-a373-1d4f58313efe" />
+
+* Jobs Page
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/adeec49b-bdfd-49cf-b45f-574bc7bc44b8" />
+
+
 
 ---
 
