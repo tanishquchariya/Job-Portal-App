@@ -60,7 +60,7 @@ export const register = async (req, res) => {
     });
 
   } catch (error) {
-    console.log("REGISTER ERROR:", error);
+    // console.log("REGISTER ERROR:", error);
     return res.status(500).json({
       message: "Server error",
       success: false,
@@ -123,7 +123,7 @@ export const login = async (req, res) => {
       });
 
   } catch (error) {
-    console.log("LOGIN ERROR:", error);
+    // console.log("LOGIN ERROR:", error);
     return res.status(500).json({
       message: "Server error",
       success: false,
@@ -142,7 +142,7 @@ export const logout = async (req, res) => {
         success: true,
       });
   } catch (error) {
-    console.log("LOGOUT ERROR:", error);
+    // console.log("LOGOUT ERROR:", error);
     return res.status(500).json({
       message: "Server error",
       success: false,
@@ -227,7 +227,7 @@ export const updateProfile = async (req, res) => {
     });
 
   } catch (error) {
-    console.log("UPDATE PROFILE ERROR:", error);
+    // console.log("UPDATE PROFILE ERROR:", error);
     return res.status(500).json({
       message: "Server error",
       success: false,
@@ -247,7 +247,7 @@ export const downloadResume = async (req, res) => {
     const resumeUrl = user.profile.resume;
     const fileName = user.profile.resumeOriginalName || "resume.pdf";
 
-    console.log("FETCHING FROM:", resumeUrl);
+    // console.log("FETCHING FROM:", resumeUrl);
 
     // Fetch on server side and stream to client
     const https = await import("https");
@@ -261,8 +261,8 @@ export const downloadResume = async (req, res) => {
           if (response.statusCode === 301 || response.statusCode === 302) {
             return downloadFromUrl(response.headers.location).then(resolve).catch(reject);
           }
-          console.log("CLOUDINARY STATUS:", response.statusCode);
-          console.log("CONTENT TYPE:", response.headers["content-type"]);
+          // console.log("CLOUDINARY STATUS:", response.statusCode);
+          // console.log("CONTENT TYPE:", response.headers["content-type"]);
 
           const chunks = [];
           response.on("data", (chunk) => chunks.push(chunk));
@@ -277,7 +277,7 @@ export const downloadResume = async (req, res) => {
 
     const { buffer, contentType } = await downloadFromUrl(resumeUrl);
 
-    console.log("BUFFER SIZE:", buffer.length);
+    // console.log("BUFFER SIZE:", buffer.length);
 
     if (!buffer || buffer.length === 0) {
       return res.status(500).json({ message: "Empty file received from Cloudinary", success: false });
@@ -289,7 +289,7 @@ export const downloadResume = async (req, res) => {
     return res.send(buffer);
 
   } catch (error) {
-    console.log("DOWNLOAD RESUME ERROR:", error);
+    // console.log("DOWNLOAD RESUME ERROR:", error);
     return res.status(500).json({ message: "Server error", success: false });
   }
 };
