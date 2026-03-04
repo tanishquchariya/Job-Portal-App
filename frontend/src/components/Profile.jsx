@@ -22,7 +22,7 @@ const handleResumeDownload = async () => {
   if (!user?.profile?.resume) return;
 
   try {
-    const response = await fetch("http://localhost:8000/api/v1/user/resume/download", {
+    const response = await fetch("https://tu-job-portal.onrender.com/api/v1/user/resume/download", {
       credentials: "include",
     });
 
