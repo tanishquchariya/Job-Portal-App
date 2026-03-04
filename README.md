@@ -7,15 +7,12 @@ Users can explore job opportunities, create professional profiles, upload resume
 
 ## 🌐 Live Demo
 
-🔗 Live Website: (Add your deployed link here)
+🔗 Live Website: https://tu-job-portal.onrender.com
 
 ---
 
 ## 📸 Screenshots
-
-| Home Page           | Jobs Page           |
-| ------------------- | ------------------- |
-| Add screenshot here | Add screenshot here |
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d73c2002-d348-4725-9042-71b50ddc8850" />
 
 ---
 
