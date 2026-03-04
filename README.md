@@ -1,2 +1,165 @@
-# Job-Portal-App
-A Job Portal App is an online platform designed to connect job seekers with potential employers efficiently. It streamlines the recruitment process by allowing job seekers to explore opportunities, create professional profiles, and apply for positions that match their skills and interests. Simultaneously
+# 🚀 TU Job Portal
+
+A full-stack **MERN Job Portal Application** designed to connect **job seekers** with **recruiters** efficiently.
+Users can explore job opportunities, create professional profiles, upload resumes and apply for jobs, while Recruiters can post job openings, manage companies, and review applicants.
+
+---
+
+## 🌐 Live Demo
+
+🔗 Live Website: (Add your deployed link here)
+
+---
+
+## 📸 Screenshots
+
+| Home Page           | Jobs Page           |
+| ------------------- | ------------------- |
+| Add screenshot here | Add screenshot here |
+
+---
+
+## ✨ Features
+
+### 👨‍💼 Job Seeker
+
+* User authentication (Signup / Login)
+* Update profile and upload resume
+* Browse available job listings
+* Apply for jobs
+* Save jobs for later
+
+### 🏢 Recruiter / Admin
+
+* Create and manage companies
+* Post new job openings
+* View job applicants
+* Manage job listings
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* Redux Toolkit
+* Axios
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+
+### Other Tools
+
+* Cloudinary (File uploads)
+* Render (Deployment)
+* GitHub (Version Control)
+
+---
+
+## 📂 Project Structure
+
+```
+TU-Job-Portal
+│
+├── backend
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── middleware
+│   └── utils
+│
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── hooks
+│   │   ├── redux
+│   │   └── pages
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### Clone the repository
+
+```bash
+git clone https://github.com/yourusername/TU-Job-Portal.git
+cd TU-Job-Portal
+```
+
+### Install dependencies
+
+Backend
+
+```bash
+npm install
+```
+
+Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+### Run the application
+
+Build frontend and start the full application:
+
+```bash
+npm run build
+npm start
+```
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the backend folder and add:
+
+```
+PORT=8000
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+---
+
+## 🚀 Deployment
+
+This project can be deployed on:
+
+* Render
+* Railway
+* AWS
+* Vercel (Frontend)
+
+Current deployment: Render
+
+---
+
+## 👨‍💻 Author
+
+**Tanishq Uchariya**
+Computer Science Engineer
+
+GitHub: https://github.com/tanishquchariya
+
+---
+
+⭐ If you like this project, please consider giving it a **star**!
